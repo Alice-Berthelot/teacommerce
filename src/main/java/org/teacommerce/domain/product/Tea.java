@@ -1,6 +1,7 @@
 package org.teacommerce.domain.product;
 
 import java.util.List;
+import java.util.UUID;
 
 // TODO: se renseigner sur les identifiants uniques
 // TODO: créer un objet Price
@@ -8,10 +9,10 @@ import java.util.List;
 // TODO: kata
 
 public class Tea {
-
+    private UUID id; // pour le constructeur : this.id = UUID.randomUUID();
+    private String name;
     private String brand;
     private Category category;
-    private String name; // serait bien d'avoir un identifiant unique
     private Origin origin;
     private List<String> flavours;
     private int oxydation;
