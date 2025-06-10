@@ -1,11 +1,15 @@
 package org.teacommerce.domain.product;
 
+import org.teacommerce.domain.price.Price;
+
 import java.util.List;
 import java.util.UUID;
 
-// TODO: se renseigner sur les identifiants uniques
-// TODO: créer un objet Price
-// TODO: qu'est-ce qu'oxydation ? qu'est-ce qu'un flavour?
+// TODO: que faire des pourcentages ?
+// TODO: ajouter raccourci pour rename
+// TODO: constructor
+// TODO: voir pour ajouter test avec JUnit5 (https://www.baeldung.com/junit-5)
+// cf require() envoyée par Benoît
 // TODO: kata
 
 public class Tea {
@@ -15,29 +19,13 @@ public class Tea {
     private Category category;
     private Origin origin;
     private List<String> flavours;
-    private int oxydation;
+    private double oxydation;
     private SteepingRules steepingRules;
-    private double taxFreePricePerGram; // autre objet
-
-    public boolean isFlavoured() {
-        return !flavours.isEmpty();
-    }
+    private Price price;
 
     public double taxFreePriceBy(int quantity) {
-        return quantity * taxFreePricePerGram;
+        return quantity * price.getTaxFreePrice();
     }
-
-//    public boolean isInfused(int quantity, int currentTime) {
-//        int requiredTime = (steepingTime * quantity) / 3;
-//
-//        if (currentTime >= requiredTime) {
-//            return true;
-//        } else {
-//            int remainingTime = requiredTime - currentTime;
-//            System.out.println("You must wait for " + remainingTime + " more minutes.");
-//            return false;
-//        }
-//    }
 
 }
 

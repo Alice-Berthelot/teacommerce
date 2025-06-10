@@ -1,16 +1,29 @@
 package org.teacommerce.domain.price;
 
+// TODO: replace double by object
+// TODO: constructor
+
 public class Price {
-    double netPrice;
-    double importCost;
-    double discount;
-    double shippingCost;
-    double vatRate;
+    private double base;
+    private double importCost;
+    // should be between 0.00 et 1.00:
+    private double discount;
+    // should be between 0.00 et 1.00:
+    private double vatRate;
 
-    // service CurrencyConversionService
+    public Price(double base, double importCost, double discount, double vatRate) {
+        this.base = base;
+        this.importCost = importCost;
+        this.discount = discount;
+        this.vatRate = vatRate;
+        // require();
+    }
 
-    public double getFinalPriceWithTax() {
-        double priceBeforeVat = netPrice + importCost + shippingCost - discount;
-        return priceBeforeVat * (1 + vatRate / 100);
+    public double getTaxFreePrice() {
+        return ((base + importCost) * discount);
+    }
+
+    public double getFinalPrice() {
+        return (((base + importCost) * discount) * vatRate);
     }
 }
